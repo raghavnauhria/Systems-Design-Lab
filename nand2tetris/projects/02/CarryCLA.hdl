@@ -1,0 +1,11 @@
+CHIP CarryCLA{
+	IN a, b, c;
+	OUT out;
+
+	Propagate(a=a, b=b, out=o1);
+	Generate(a=a, b=b, out=o2);
+
+	And(a=c, b=o1, out=o3);
+
+	Or(a=o3, b=o2, out=out);
+}

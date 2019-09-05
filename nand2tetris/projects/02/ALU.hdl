@@ -1,0 +1,113 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/ALU.hdl
+
+/**
+ * The ALU (Arithmetic Logic Unit).
+ * Computes one of the following functions:
+ * x+y, x-y, y-x, 0, 1, -1, x, y, -x, -y, !x, !y,
+ * x+1, y+1, x-1, y-1, x&y, x|y on two 16-bit inputs, 
+ * according to 6 input bits denoted zx,nx,zy,ny,f,no.
+ * In addition, the ALU computes two 1-bit outputs:
+ * if the ALU output == 0, zr is set to 1; otherwise zr is set to 0;
+ * if the ALU output < 0, ng is set to 1; otherwise ng is set to 0.
+ */
+
+// Implementation: the ALU logic manipulates the x and y inputs
+// and operates on the resulting values, as follows:
+// if (zx == 1) set x = 0        // 16-bit constant
+// if (nx == 1) set x = !x       // bitwise not
+// if (zy == 1) set y = 0        // 16-bit constant
+// if (ny == 1) set y = !y       // bitwise not
+// if (f == 1)  set out = x + y  // integer 2 s complement addition
+// if (f == 0)  set out = x & y  // bitwise and
+// if (no == 1) set out = !out   // bitwise not
+// if (out == 0) set zr = 1
+// if (out < 0) set ng = 1
+
+CHIP ALU {
+    IN  
+        x[16], y[16],  // 16-bit inputs        
+        zx, // zero the x input?
+        nx, // negate the x input?
+        zy, // zero the y input?
+        ny, // negate the y input?
+        f,  // compute out = x + y (if 1) or x & y (if 0)
+        no; // negate the out output?
+
+    OUT 
+        out[16], // 16-bit output
+        zr, // 1 if (out == 0), 0 otherwise
+        ng; // 1 if (out < 0),  0 otherwise
+
+    PARTS:
+   // Put you code here:
+   Xor(a=x[0], b=x[0], out=z);
+   
+   zero(a=x,b=t);
+   
+   Mux16(a=x, b=t, sel=zx, out=t1);
+   Mux16(a=y, b=t, sel=zy, out=t2);
+   
+   Xor16(a=t1, b[0]=nx, b[1]=nx, b[2]=nx, b[3]=nx, b[4]=nx, b[5]=nx, b[6]=nx, b[7]=nx, b[8]=nx, b[9]=nx, b[10]=nx, b[11]=nx, b[12]=nx, b[13]=nx, b[14]=nx, b[15]=nx, out=t3);
+   
+   Xor16(a=t2, b[0]=ny, b[1]=ny, b[2]=ny, b[3]=ny, b[4]=ny, b[5]=ny, b[6]=ny, b[7]=ny, b[8]=ny, b[9]=ny, b[10]=ny, b[11]=ny, b[12]=ny, b[13]=ny, b[14]=ny, b[15]=ny, out=t4);
+   
+   Add16(a=t3, b=t4, c=z, out=t5, carry=carry);
+   And16(a=t3, b=t4, out=t6);
+   Mux16(a=t6, b=t5, sel=f, out=r);
+   Xor16(a=r, b[0]=no, b[1]=no, b[2]=no, b[3]=no, b[4]=no, b[5]=no, b[6]=no, b[7]=no, b[8]=no, b[9]=no, b[10]=no, b[11]=no, b[12]=no, b[13]=no, b[14]=no, b[15]=no, out[0]=out0,  out[1]=out1, out[2]=out2, out[3]=out3, out[4]=out4, out[5]=out5, out[6]=out6, out[7]=out7, out[8]=out8, out[9]=out9, out[10]=out10, out[11]=out11, out[12]=out12, out[13]=out13, out[14]=out14, out[15]=out15);
+
+	Not(in=out0, out=a0);
+	Not(in=out1, out=a1);
+	Not(in=out2, out=a2);
+	Not(in=out3, out=a3);
+	Not(in=out4, out=a4);
+	Not(in=out5, out=a5);
+	Not(in=out6, out=a6);
+	Not(in=out7, out=a7);
+	Not(in=out8, out=a8);
+	Not(in=out9, out=a9);
+	Not(in=out10, out=a10);
+	Not(in=out11, out=a11);
+	Not(in=out12, out=a12);
+	Not(in=out13, out=a13);
+	Not(in=out14, out=a14);
+	Not(in=out15, out=a15);
+	
+	And(a=a0, b=a1, out=r1);
+	And(a=a2, b=a3, out=r2);
+	And(a=a4, b=a5, out=r3);
+	And(a=a6, b=a7, out=r4);
+	And(a=a8, b=a9, out=r5);
+	And(a=a10, b=a11, out=r6);
+	And(a=a12, b=a13, out=r7);
+	And(a=a14, b=a15, out=r8);
+	And(a=r1, b=r2, out=y1);
+	And(a=r3, b=r4, out=y2);
+	And(a=r5, b=r6, out=y3);
+	And(a=r7, b=r8, out=y4);
+	And(a=y1, b=y2, out=z1);
+	And(a=y3, b=y4, out=z2);
+	And(a=z1, b=z2, out=zr);
+	
+	Or(a=out15, b=out15, out=ng);
+	
+	Or(a=out0, b=out0, out=out[0]);
+	Or(a=out1, b=out1, out=out[1]);
+	Or(a=out2, b=out2, out=out[2]);
+	Or(a=out3, b=out3, out=out[3]);
+	Or(a=out4, b=out4, out=out[4]);
+	Or(a=out5, b=out5, out=out[5]);
+	Or(a=out6, b=out6, out=out[6]);
+	Or(a=out7, b=out7, out=out[7]);
+	Or(a=out8, b=out8, out=out[8]);
+	Or(a=out9, b=out9, out=out[9]);
+	Or(a=out10, b=out10, out=out[10]);
+	Or(a=out11, b=out11, out=out[11]);
+	Or(a=out12, b=out12, out=out[12]);
+	Or(a=out13, b=out13, out=out[13]);
+	Or(a=out14, b=out14, out=out[14]);
+	Or(a=out15, b=out15, out=out[15]);
+}

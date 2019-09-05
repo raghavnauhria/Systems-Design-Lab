@@ -1,0 +1,10 @@
+CHIP Xor4 {
+    IN a[4],b;
+    OUT out[4];
+
+    PARTS:
+    Xor(a=a[0],b=b,out=out[0]);
+    Xor(a=a[1],b=b,out=out[1]);
+    Xor(a=a[2],b=b,out=out[2]);
+    Xor(a=a[3],b=b,out=out[3]);
+    }

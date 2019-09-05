@@ -1,0 +1,20 @@
+CHIP SATUn {
+  IN a[8], b[8];
+  OUT mul[16];
+  
+  PARTS:
+  
+  Xor(a=a[0], b=a[0], out=z);
+  PPGen(a=a, b=b, PP0=PP0, PP1=PP1, PP2=PP2, PP3=PP3, PP4=PP4, PP5=PP5, PP6=PP6, PP7=PP7); 
+  
+  SAT(a=PP0, b=PP1, c=PP2, sum=S11, carry=C11);
+  SAT(a=PP3, b=PP4, c=PP5, sum=S12, carry=C12);
+  SAT(a=C11, b=S11, c=C12, sum=S21, carry=C21);
+  SAT(a=S12, b=PP6, c=PP7, sum=S22, carry=C22);
+  SAT(a=S21, b=C21, c=C22, sum=S31, carry=C31);
+  SAT(a=C31, b=S31, c=S22, sum=S41, carry=C41);
+  
+  CLAho(a=S41, b=C41, c=z, sum=mul, carry =d);
+  
+  }
+

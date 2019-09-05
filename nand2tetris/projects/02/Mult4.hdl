@@ -1,0 +1,21 @@
+CHIP Mult4{
+	IN a[4], b[4], c;
+	OUT out[8];
+
+	PARTS:
+
+		Multy(a[0..2]=a[1..3], a[3]=c, b=b[0], out = Sety0);
+		Multy(a=a, b=b[1], out = Sety1);
+		Multy(a=a, b=b[2], out = Sety2);
+		Multy(a=a, b=b[3], out = Sety3);
+
+		And(a=a[0], b=b[0], out=out[0]);
+
+		CLA4(a=Sety1, b=Sety0, c=c, s[0] = out[1], s[1..3] =  Lvl1, carry = c1);
+		
+		CLA4(a=Sety2, b[0..2]=Lvl1, b[3]=c1, c=c, s[0] = out[2], s[1..3] =  Lvl2, carry = c2);
+		
+		CLA4(a=Sety3, b[0..2]=Lvl2, b[3]=c2, c=c, s[0..3] = out[3..6] ,carry = out[7]);
+
+
+}

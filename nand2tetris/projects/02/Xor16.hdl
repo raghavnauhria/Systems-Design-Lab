@@ -1,0 +1,33 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/Xor16.hdl
+
+/**
+ * Xor 2 16-bit values.
+ */
+
+CHIP Xor16 {
+  IN a[16], b[16];
+  OUT out[16];
+
+  PARTS:
+   	
+   	Xor(a=b[0], b=a[0], out=out[0]);
+    Xor(a=b[1], b=a[1], out=out[1]);
+    Xor(a=b[2], b=a[2], out=out[2]);
+    Xor(a=b[3], b=a[3], out=out[3]);
+    Xor(a=b[4], b=a[4], out=out[4]);
+    Xor(a=b[5], b=a[5], out=out[5]);
+    Xor(a=b[6], b=a[6], out=out[6]);
+    Xor(a=b[7], b=a[7], out=out[7]);
+    Xor(a=b[8], b=a[8], out=out[8]);
+    Xor(a=b[9], b=a[9], out=out[9]);
+    Xor(a=b[10], b=a[10], out=out[10]);
+    Xor(a=b[11], b=a[11], out=out[11]);
+    Xor(a=b[12], b=a[12], out=out[12]);
+    Xor(a=b[13], b=a[13], out=out[13]);
+    Xor(a=b[14], b=a[14], out=out[14]);
+    Xor(a=b[15], b=a[15], out=out[15]);
+
+}

@@ -1,0 +1,95 @@
+CHIP PPSi {
+  IN a[8], b[8];
+  OUT PP0[16], PP1[16], PP2[16], PP3[16], PP4[16], PP5[16], PP6[16], PP7[16];
+
+  PARTS:
+  
+  Xor(a=a[0], b=a[0], out=z);
+  
+  And8Si(a=a, b=b[0], out=PP0[0..7] ,t=z0);
+  And(a=z0, b=z0, out=PP0[8]);
+  And(a=z0, b=z0, out=PP0[9]);
+  And(a=z0, b=z0, out=PP0[10]);
+  And(a=z0, b=z0, out=PP0[11]);
+  And(a=z0, b=z0, out=PP0[12]);
+  And(a=z0, b=z0, out=PP0[13]);
+  And(a=z0, b=z0, out=PP0[14]);
+  And(a=z0, b=z0, out=PP0[15]);
+    
+  And(a=z, b=z, out=PP1[0]);
+  And8Si(a=a, b= b[1], out=PP1[1..8], t=z1);
+  And(a=z1, b=z2, out=PP1[9]);
+  And(a=z1, b=z2, out=PP1[10]);
+  And(a=z1, b=z2, out=PP1[11]);
+  And(a=z1, b=z2, out=PP1[12]);
+  And(a=z1, b=z2, out=PP1[13]);
+  And(a=z1, b=z2, out=PP1[14]);
+  And(a=z1, b=z2, out=PP1[15]);
+  
+  And(a=z, b=z, out=PP2[0]);
+  And(a=z, b=z, out=PP2[1]);
+  And8Si(a=a, b= b[2], out=PP2[2..9], t=z2);
+  And(a=z2, b=z2, out=PP2[10]);
+  And(a=z2, b=z2, out=PP2[11]);
+  And(a=z2, b=z2, out=PP2[12]);
+  And(a=z2, b=z2, out=PP2[13]);
+  And(a=z2, b=z2, out=PP2[14]);
+  And(a=z2, b=z2, out=PP2[15]);
+  
+  
+  And(a=z, b=z, out=PP3[0]);
+  And(a=z, b=z, out=PP3[1]);
+  And(a=z, b=z, out=PP3[2]);
+  And8Si(a=a, b= b[3], out=PP3[3..10], t=z3);
+  And(a=z3, b=z3, out=PP3[11]);
+  And(a=z3, b=z3, out=PP3[12]);
+  And(a=z3, b=z3, out=PP3[13]);
+  And(a=z3, b=z3, out=PP3[14]);
+  And(a=z3, b=z3, out=PP3[15]);
+  
+  And(a=z, b=z, out=PP4[0]);
+  And(a=z, b=z, out=PP4[1]);
+  And(a=z, b=z, out=PP4[2]);
+  And(a=z, b=z, out=PP4[3]);
+  And8Si(a=a, b= b[4], out=PP4[4..11], t=z4);
+  And(a=z4, b=z4, out=PP4[12]);
+  And(a=z4, b=z4, out=PP4[13]);
+  And(a=z4, b=z4, out=PP4[14]);
+  And(a=z4, b=z4, out=PP4[15]);
+  
+  And(a=z, b=z, out=PP5[0]);
+  And(a=z, b=z, out=PP5[1]);
+  And(a=z, b=z, out=PP5[2]);
+  And(a=z, b=z, out=PP5[3]);
+  And(a=z, b=z, out=PP5[4]);
+  And8Si(a=a, b= b[5], out=PP5[5..12], t=z5);
+  And(a=z5, b=z5, out=PP5[13]);
+  And(a=z5, b=z5, out=PP5[14]);
+  And(a=z5, b=z5, out=PP5[15]);
+  
+  And(a=z, b=z, out=PP6[0]);
+  And(a=z, b=z, out=PP6[1]);
+  And(a=z, b=z, out=PP6[2]);
+  And(a=z, b=z, out=PP6[3]);
+  And(a=z, b=z, out=PP6[4]);
+  And(a=z, b=z, out=PP6[5]);
+  And8Si(a=a, b= b[6], out=PP6[6..13], t=z6);
+  And(a=z6, b=z6, out=PP6[14]);
+  And(a=z6, b=z6, out=PP6[15]);
+  
+  And(a=z, b=z, out=PP7[0]);
+  And(a=z, b=z, out=PP7[1]);
+  And(a=z, b=z, out=PP7[2]);
+  And(a=z, b=z, out=PP7[3]);
+  And(a=z, b=z, out=PP7[4]);
+  And(a=z, b=z, out=PP7[5]);
+  And(a=z, b=z, out=PP7[6]);
+  And8Si(a=a, b= b[7], out=q, t=t);
+  toggle(a=q, out=w);
+  Add8(a=w, out=PP7[7..14],p=z7);
+  And(a=z7, b=z7, out=PP7[15]);
+  
+ }
+  
+  
+  

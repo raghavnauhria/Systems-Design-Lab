@@ -1,0 +1,19 @@
+CHIP Add8 {
+ IN a[8];
+ OUT out[8], p;
+ 
+ PARTS:
+ Xor(a=a[0], b=a[0], out=z);
+ Not(in=z, out=o);
+ 
+ FullAdder(a=a[0], b=z, c=o, sum=out[0], carry=c1);
+ FullAdder(a=a[1], b=z, c=c1, sum=out[1], carry=c2);
+ FullAdder(a=a[2], b=z, c=c2, sum=out[2], carry=c3);
+ FullAdder(a=a[3], b=z, c=c3, sum=out[3], carry=c4);
+ FullAdder(a=a[4], b=z, c=c4, sum=out[4], carry=c5);
+ FullAdder(a=a[5], b=z, c=c5, sum=out[5], carry=c6);
+ FullAdder(a=a[6], b=z, c=c6, sum=out[6], carry=c7);
+ FullAdder(a=a[7], b=z, c=c7, sum=out[7], carry=c8);
+  FullAdder(a=a[7], b=z, c=c7, sum=p, carry=c9);
+  }
+ 

@@ -1,0 +1,9 @@
+CHIP zero
+{
+ 
+ IN a[16];
+ OUT b[16];
+ 
+ PARTS:
+ Xor16(a=a, b=a, out=b);
+ }

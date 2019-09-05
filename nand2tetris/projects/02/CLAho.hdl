@@ -1,0 +1,92 @@
+CHIP CLAho {
+    IN a[16],b[16],c;
+    OUT sum[16],carry;
+
+    PARTS:
+    /*Propagate(a=a[0], b=b[0], out=p0);
+    Propagate(a=a[1], b=b[1], out=p1);
+    Propagate(a=a[2], b=b[2], out=p2);
+    Propagate(a=a[3], b=b[3], out=p3);
+    Propagate(a=a[4], b=b[4], out=p4);
+    Propagate(a=a[5], b=b[5], out=p5);
+    Propagate(a=a[6], b=b[6], out=p6);
+    Propagate(a=a[7], b=b[7], out=p7);
+    Propagate(a=a[8], b=b[8], out=p8);
+    Propagate(a=a[9], b=b[9], out=p9);
+    Propagate(a=a[10], b=b[10], out=p10);
+    Propagate(a=a[11], b=b[11], out=p11);
+    Propagate(a=a[12], b=b[12], out=p12);
+    Propagate(a=a[13], b=b[13], out=p13);
+    Propagate(a=a[14], b=b[14], out=p14);
+    Propagate(a=a[15], b=b[15], out=p15);
+    
+    Generate(a=a[0], b=b[0], out=g0);
+    Generate(a=a[1], b=b[1], out=g1);
+    Generate(a=a[2], b=b[2], out=g2);
+    Generate(a=a[3], b=b[3], out=g3);
+    Generate(a=a[4], b=b[4], out=g4);
+    Generate(a=a[5], b=b[5], out=g5);
+    Generate(a=a[6], b=b[6], out=g6);
+    Generate(a=a[7], b=b[7], out=g7);
+    Generate(a=a[8], b=b[8], out=g8);
+    Generate(a=a[9], b=b[9], out=g9);
+    Generate(a=a[10], b=b[10], out=g10);
+    Generate(a=a[11], b=b[11], out=g11);
+    Generate(a=a[12], b=b[12], out=g12);
+    Generate(a=a[13], b=b[13], out=g13);
+    Generate(a=a[14], b=b[14], out=g14);
+    Generate(a=a[15], b=b[15], out=g15);
+    
+    Xor(a=a[0],b=a[0],out=t1);
+	Not(in=t1,out=t);
+    
+    And4(a[0]=p0, a[1]=p1, a[2]=p2, a[3]=p3, out=P01);
+    And4(a[0]=p4, a[1]=p5, a[2]=p6, a[3]=p7, out=P11);
+    And4(a[0]=p8, a[1]=p9, a[2]=p10, a[3]=p11, out=P21);
+    And4(a[0]=p12, a[1]=p13, a[2]=p14, a[3]=p15, out=P31);
+	
+	And4(a[0]=p3, a[1]=p2, a[2]=p0, a[3]=g0, out=k1);
+	And4(a[0]=p3, a[1]=p2, a[2]=t, a[3]=g1, out=k2);
+	And(a=p3,b=g2,out=k3);
+	Or4(a[0]=k1, a[1]=k2, a[2]=k3, a[3]=g3, out=G01);
+	
+	And4(a[0]=p7, a[1]=p6, a[2]=p5, a[3]=g4, out=k4);
+	And4(a[0]=p7, a[1]=p6, a[2]=t, a[3]=g5, out=k5);
+	And(a=p7,b=g6,out=k6);
+	Or4(a[0]=k4, a[1]=k5, a[2]=k6, a[3]=g7, out=G11);
+	
+	And4(a[0]=p11, a[1]=p10, a[2]=p9, a[3]=g8, out=k7);
+	And4(a[0]=p11, a[1]=p10, a[2]=t, a[3]=g9, out=k8);
+	And(a=p11,b=g10,out=k9);
+	Or4(a[0]=k7, a[1]=k8, a[2]=k9, a[3]=g11, out=G21);
+	
+	And4(a[0]=p15, a[1]=p14, a[2]=p13, a[3]=g12, out=k10);
+	And4(a[0]=p15, a[1]=p14, a[2]=t, a[3]=g13, out=k11);
+	And(a=p15,b=g14,out=k12);
+	Or4(a[0]=k11, a[1]=k12, a[2]=k10, a[3]=g15, out=G31);
+	
+	And(a=P01, b=c, out=h1);
+	Or(a=h1, b=G01, out=c4);
+	
+	And(a=P11, b=c4, out=h2);
+	Or(a=h2, b=G11, out=c8);
+	
+	And(a=P21, b=c8, out=h3);
+	Or(a=h3, b=G21, out=c12);
+	
+	And(a=P31, b=c12, out=h4);
+	Or(a=h4, b=G31, out=c16);*/
+	
+	CLA4(a=a[0..3], b=b[0..3], c=c, s=sum[0..3], carry=C04);
+	CLA4(a=a[4..7], b=b[4..7], c=C04, s=sum[4..7], carry=C08);
+	CLA4(a=a[8..11], b=b[8..11], c=C08, s=sum[8..11], carry=C12);
+	CLA4(a=a[12..15], b=b[12..15], c=C12, s=sum[12..15], carry=carry);
+	}
+	
+	
+	
+	
+		
+    
+    
+    

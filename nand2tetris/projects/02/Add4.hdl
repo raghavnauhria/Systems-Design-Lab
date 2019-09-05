@@ -1,0 +1,21 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/Add4.hdl
+
+/**
+ * Adds two 4-bit values.
+ Xor(a=a[0], b=a[0], out=c0);
+ */
+
+CHIP Add4 {
+    IN a[4], b[4], c;
+    OUT out[4], carry;
+
+    PARTS:
+    
+    FullAdder(a=a[0], b=b[0], c=c, sum=out[0], carry=c1);
+    FullAdder(a=a[1], b=b[1], c=c1, sum=out[1], carry=c2);
+    FullAdder(a=a[2], b=b[2], c=c2, sum=out[2], carry=c3);
+    FullAdder(a=a[3], b=b[3], c=c3, sum=out[3], carry=carry);
+}

@@ -1,0 +1,45 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/CLA4.hdl
+
+/*
+ * Adds two 4-bit values.
+ */
+
+ CHIP CLA4{
+ 	IN a[4], b[4], c;
+ 	OUT s[4], carry;
+
+ 	PARTS:
+ 	
+ 	Propagate(a=a[0], b=b[0], out=p0);
+ 	Generate(a=a[0], b=b[0], out=g0);
+
+ 	And(a=p0, b=c, out=a0);
+ 	Or(a=a0, b=g0, out=c1);
+
+ 	Propagate(a=a[1], b=b[1], out=p1);
+ 	Generate(a=a[1], b=b[1], out=g1);
+
+ 	And(a=p1, b=c1, out=a1);
+ 	Or(a=a1, b=g1, out=c2);
+
+ 	Propagate(a=a[2], b=b[2], out=p2);
+ 	Generate(a=a[2], b=b[2], out=g2);
+
+ 	And(a=p2, b=c2, out=a2);
+ 	Or(a=a2, b=g2, out=c3);
+
+ 	Propagate(a=a[3], b=b[3], out=p3);
+ 	Generate(a=a[3], b=b[3], out=g3);
+
+ 	And(a=p3, b=c3, out=a3);
+ 	Or(a=a3, b=g3, out=carry);
+
+ 	Xor(a=p0, b=c, out=s[0]);
+ 	Xor(a=p1, b=c1, out=s[1]);
+ 	Xor(a=p2, b=c2, out=s[2]);
+ 	Xor(a=p3, b=c3, out=s[3]);
+
+ }

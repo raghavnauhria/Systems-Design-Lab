@@ -1,0 +1,23 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/AddSub16.hdl
+
+/**
+ * Subtractor two 16-bit values.
+ * The most significant carry bit is ignored.
+ Add16(a[0..14]=a[0..14], a[15]=c00, b[0]=b0, b[1]=b1, b[2]=b2, b[3]=b3, b[4]=b4, b[5]=b5, b[6]=b6, b[7]=b7, b[8]=b8, b[9]=b9, b[10]=b10, b[11]=b11, b[12]=b12, b[13]=b13, b[14]=b14, b[15]=c00, out[0..15]=out[0..15], carry=carry_last);
+
+  b[0]=b0, b[1]=b1, b[2]=b2, b[3]=b3, b[4]=b4, b[5]=b5, b[6]=b6, b[7]=b7, b[8]=b8, b[9]=b9, b[10]=b10, b[11]=b11, b[12]=b12, b[13]=b13, b[14]=b14, b[15]=b15
+
+ */
+
+CHIP AddSub16 {
+  IN a[16], b[16], c;
+  OUT out[16], carry;
+
+  PARTS:
+
+    Xor16(a[0]=c,a[1]=c,a[2]=c,a[3]=c,a[4]=c,a[5]=c,a[6]=c,a[7]=c,a[8]=c,a[9]=c,a[10]=c,a[11]=c,a[12]=c,a[13]=c,a[14]=c,a[15]=c ,b=b, out=Xorb);
+	Add16(a=a, b=Xorb, c=c, out[0..15]=out[0..15], carry=carry);
+}

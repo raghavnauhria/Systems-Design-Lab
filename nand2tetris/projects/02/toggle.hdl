@@ -1,0 +1,14 @@
+CHIP toggle {
+  IN a[8];
+  OUT out[8];
+  
+  PARTS:
+  Not(in=a[0], out=out[0]);
+  Not(in=a[1], out=out[1]);
+  Not(in=a[2], out=out[2]);
+  Not(in=a[3], out=out[3]);
+  Not(in=a[4], out=out[4]);
+  Not(in=a[5], out=out[5]);
+  Not(in=a[6], out=out[6]);
+  Not(in=a[7], out=out[7]);
+  }

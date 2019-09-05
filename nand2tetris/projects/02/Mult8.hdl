@@ -1,0 +1,27 @@
+CHIP Mult8{
+	IN a[8], b[8];
+	OUT out[16];
+
+	PARTS:
+
+		XGen(a=a, out=X0);
+
+		Xor(a=a[0], b=a[0], out=shunya);
+
+		Add16(a=X0, b=X0, c=shunya, out=X1, carry=carry);
+		Add16(a=X1, b=X1, c=shunya, out=X2, carry=carry);
+		Add16(a=X2, b=X2, c=shunya, out=X3, carry=carry);
+		Add16(a=X3, b=X3, c=shunya, out=X4, carry=carry);
+		Add16(a=X4, b=X4, c=shunya, out=X5, carry=carry);
+		Add16(a=X5, b=X5, c=shunya, out=X6, carry=carry);
+		Add16(a=X6, b=X6, c=shunya, out=X7, carry=carry);
+		Add16(a=X7, b=X7, c=shunya, out=X8, carry=carry);
+		Add16(a=X8, b=X8, c=shunya, out=X9, carry=carry);
+		Add16(a=X9, b=X9, c=shunya, out=X10, carry=carry);
+		Add16(a=X10, b=X10, c=shunya, out=X11, carry=carry);
+		Add16(a=X11, b=X11, c=shunya, out=X12, carry=carry);
+		Add16(a=X12, b=X12, c=shunya, out=X13, carry=carry);
+		Add16(a=X13, b=X13, c=shunya, out=X14, carry=carry);
+		Add16(a=X14, b=X14, c=shunya, out=X15, carry=carry);
+
+}

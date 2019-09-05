@@ -1,0 +1,9 @@
+CHIP SumCLA{
+	IN a, b, c;
+	OUT out;
+
+	PARTS:
+	
+	Propagate(a=a, b=b, out=o1);
+	Xor(a=c, b=o1, out=out);
+}

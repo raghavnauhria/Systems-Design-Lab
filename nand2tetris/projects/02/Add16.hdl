@@ -1,0 +1,30 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/Adder16.hdl
+
+/**
+ * Adds two 16-bit values.
+ * The most significant carry bit is ignored.
+
+ 	Attempt One:
+
+ 	CLA4(a[0]=a[0], a[1]=a[1], a[2]=a[2], a[3]=a[3], b[0]=b[0], b[1]=b[1], b[2]=b[2], b[3]=b[3], c=c0, s[0]=out[0], s[1]=out[1], s[2]=out[2], s[3]=out[3], carry=c4);
+   	CLA4(a[0]=a[4], a[1]=a[5], a[2]=a[6], a[3]=a[7], b[0]=b[4], b[1]=b[5], b[2]=b[6], b[3]=b[7], c=c4, s[0]=out[4], s[1]=out[5], s[2]=out[6], s[3]=out[7], carry=c8);
+	CLA4(a[0]=a[8], a[1]=a[9], a[2]=a[10], a[3]=a[11], b[0]=b[8], b[1]=b[9], b[2]=b[10], b[3]=b[11], c=c8, s[0]=out[8], s[1]=out[9], s[2]=out[10], s[3]=out[11], carry=c12);
+	CLA4(a[0]=a[12], a[1]=a[13], a[2]=a[14], a[3]=a[15], b[0]=b[12], b[1]=b[13], b[2]=b[14], b[3]=b[15], c=c12, s[0]=out[12], s[1]=out[13], s[2]=out[14], s[3]=out[15], carry=carry);
+
+ */
+
+CHIP Add16 {
+    IN a[16], b[16], c;
+    OUT out[16], carry;
+
+    PARTS:
+   	
+
+	CLA4(a[0..3]=a[0..3], b[0..3]=b[0..3], c=c, s[0..3]=out[0..3], carry=c4);
+	CLA4(a[0..3]=a[4..7], b[0..3]=b[4..7], c=c4, s[0..3]=out[4..7], carry=c8);
+	CLA4(a[0..3]=a[8..11], b[0..3]=b[8..11], c=c8, s[0..3]=out[8..11], carry=c12);
+	CLA4(a[0..3]=a[12..15], b[0..3]=b[12..15], c=c12, s[0..3]=out[12..15], carry=carry);
+}

@@ -1,0 +1,11 @@
+CHIP XGen{
+	IN a[8];
+	OUT out[16];
+
+	PARTS:
+
+		Xor(a=a, b=a, out=shunya);
+
+		And(a=a, b=shunya, out=out[8..15]);
+		Or(a=a, b=shunya, out=out[0..7]);
+}
